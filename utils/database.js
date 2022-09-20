@@ -1,4 +1,12 @@
 const Sequelize = require('sequelize');
+require('dotenv').config();
+
+const DB_CONNECTION = process.env.DB_CONNECTION || 'mysql';
+const DB_HOST = process.env.DB_HOST || 'localhost';
+const DB_PORT = process.env.DB_PORT || 3306;
+const DB_NAME = process.env.DB_NAME || 'ServisKendaraan';
+const DB_USERNAME = process.env.DB_USERNAME || 'root';
+const DB_PASSWORD = process.env.DB_PASSWORD || 'root';
 
 module.exports = {
     defineUserModel: function () {
@@ -27,10 +35,10 @@ module.exports = {
 }
 
 function connectToServer() {
-    return new Sequelize('ServisKendaraan', 'root', 'root', {
-        host: 'localhost',
-        port: 3306,
-        dialect: 'mysql'
+    return new Sequelize(DB_NAME, DB_USERNAME, DB_PASSWORD, {
+        host: DB_HOST,
+        port: DB_PORT,
+        dialect: DB_CONNECTION
     });
 
 }
