@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  adminer:
+    container_name: adminer
+    image: adminer
+    ports:
+      - 8080:8080
+  mysql:
+    container_name: mysql
+    image: mysql
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+    volumes:
+      - ./dataku:/var/lib/mysql
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - ./datamongo:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: admin
